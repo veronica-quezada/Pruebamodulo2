@@ -21,41 +21,40 @@ function tabla(datos) {
 }
 
 function tarjeta(data) {
-        carta.innerHTML = "";
-    for (let temp of datos) {
-        carta.innerHTML += ` 
-          <div id="tarjSola" class="card mb-3 container" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="${temp.image}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">"NOMBRE: ${temp.name}"</h5>
-          <p class="card-text">ESPECIE: "${temp.species}"</p>
-         </div>
-      </div>
-    </div>
+    carta.innerHTML = "";
+for (let temp of data) {
+    carta.innerHTML += ` 
+      <div id="tarjSola" class="card mb-3 container" style="max-width: 540px;">
+<div class="row g-0">
+  <div class="col-md-4">
+    <img src="${temp.img}" class="img-fluid rounded-start" alt="...">
   </div>
-     `
-    }
+  <div class="col-md-8">
+    <div class="card-body">
+      <h5 class="card-title">"NOMBRE: ${temp.name}"</h5>
+      <p class="card-text">Nivel: "${temp.level}"</p>
+     </div>
+  </div>
+</div>
+</div>
+ `
+}
 }
 
 
-function capturaDato( ) {
-    //let buscarDigimon = document.getElementById("dato").value;
+function capturaDato() {
     let buscarDigimon = document.getElementById("dato").value.toLowerCase();
-    buscarDigimon = buscarDigimon.toLowerCase();
     document.getElementById("tabla_principal").style.display = "none";
-    
-    //fetch(URL_DIGIMON + '/name/' + buscarDigimon)
-    fetch(URL_DIGIMON + '/name/' + buscarDigimon)
-    .then(response => response.json()) 
-    .then(datos => {
-        console.log(datos);
-        carta(datos);
-    });
-debugger
+
+    fetch(`${URL_DIGIMON}/name/${buscarDigimon}`)
+        .then(response => response.json())
+        .then(datos => {
+            console.log(datos ,"busqeda");
+            tarjeta(datos);
+        })
+        .catch(error => {
+            console.error('Error al realizar la búsqueda:', error);
+        });
 }
 
 $(document).ready(function () {
