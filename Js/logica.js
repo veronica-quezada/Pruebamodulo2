@@ -47,12 +47,14 @@ function capturaDato( ) {
     buscarDigimon = buscarDigimon.toLowerCase();
     document.getElementById("tabla_principal").style.display = "none";
     
-    fetch(URL_DIGIMON + '/:name' + buscarDigimon)
-    .then(response => response.json())
+    //fetch(URL_DIGIMON + '/name/' + buscarDigimon)
+    fetch(URL_DIGIMON/'name'/buscarDigimon)
+    .then(response => response.json()) 
     .then(datos => {
         console.log(datos);
         carta(datos);
     });
+debugger
 }
 
 $(document).ready(function () {
