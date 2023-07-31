@@ -43,12 +43,13 @@ function tarjeta(data) {
 
 
 function capturaDato( ) {
-    let buscarDigimon = document.getElementById("dato").value;
+    //let buscarDigimon = document.getElementById("dato").value;
+    let buscarDigimon = document.getElementById("dato").value.toLowerCase();
     buscarDigimon = buscarDigimon.toLowerCase();
     document.getElementById("tabla_principal").style.display = "none";
     
     //fetch(URL_DIGIMON + '/name/' + buscarDigimon)
-    fetch(URL_DIGIMON/'name'/buscarDigimon)
+    fetch(URL_DIGIMON + '/name/' + buscarDigimon)
     .then(response => response.json()) 
     .then(datos => {
         console.log(datos);
